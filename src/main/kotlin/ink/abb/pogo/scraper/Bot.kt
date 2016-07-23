@@ -41,9 +41,10 @@ class Bot(val api: PokemonGo, val settings: Settings) {
         println("Pokebank ${ctx.api.inventories.pokebank.pokemons.size}/${ctx.profile.pokemonStorage}")
         //println("Inventory bag ${ctx.api.bag}")
 
-        api.inventories.pokebank.pokemons.map {
+        println("\nYou have ${api.inventories.pokebank.pokemons.size} pokemon:")
+        api.inventories.pokebank.pokemons.sortedByDescending { it.cp }.map {
             val IV = it.getIvPercentage()
-            "Have ${it.pokemonId.name} (${it.nickname}) with ${it.cp} CP and IV $IV%"
+            "${it.pokemonId.name} (${it.nickname}) with ${it.cp} CP and IV $IV%"
         }.forEach { println(it) }
 
         val keepalive = GetMapRandomDirection()
