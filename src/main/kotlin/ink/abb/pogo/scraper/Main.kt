@@ -10,6 +10,7 @@ package ink.abb.pogo.scraper
 
 import Log
 import POGOProtos.Networking.Envelopes.RequestEnvelopeOuterClass
+import com.google.common.io.Resources
 import com.pokegoapi.api.PokemonGo
 import com.pokegoapi.auth.GoogleLogin
 import com.pokegoapi.auth.PtcLogin
@@ -62,7 +63,7 @@ fun main(args: Array<String>) {
     val http = builder.build()
 
     val properties = Properties()
-    FileInputStream("config.properties").use {
+    FileInputStream(Resources.getResource("config.properties").path).use {
         properties.load(it)
     }
 
